@@ -1,0 +1,232 @@
+\documentclass[dvipdfmx,twocolumn]{jsarticle}
+\usepackage{mymacros}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tcolorbox}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\title{微分積分学第一 中間試験}
+\author{Jクラス}
+\date{\today}
+\begin{document}
+\maketitle
+\textbf{1.}
+(1)
+\[\arcsin (- \frac{1}{2}) = - \frac{\pi}{3}\]
+\[\arccos (- \frac{1}{2}) = \frac{\pi 5}{6}\]
+\[\arctan (-1) = - \frac{\pi}{4}\]
+(2)
+$\arccos x = \arcsin \frac{3}{5}$ を満たす$x$を求める。
+
+$\theta = \arcsin \frac{3}{5}$と置くと
+
+$\arcsin$ と $\arccos$ の定義から
+$\sin \theta = \frac{3}{5} , x = \cos \theta$となるので
+$- \frac{\pi}{2} < \theta < \frac{\pi}{2}$から $\cos \theta  > 0$であることより
+$\cos \theta = \sqrt{1 - \sin^2 \theta}$なので代入すると
+
+$x = \sqrt{1 - (\frac{3}{5})^2} = \frac{4}{5}$となる。
+
+(3)
+\[
+\frac{d}{dx} (\arcsin x + \arccos x) = \frac{1}{\sqrt{1 - x^2}} - \frac{1}{\sqrt{1 - x^2}} = 0
+\]
+なので $\arcsin x + \arccos x$は定数関数であることがわかる。
+
+よって $x = 0$を代入すると
+\[\arcsin 0 + \arccos 0 = 0 + \frac{\pi}{2}\]
+となるため
+$x$によらず
+\[\arcsin x + \arccos x = \frac{\pi}{2}\]
+が示された。
+
+(4)
+\[
+\int \arctan x \, dx
+\]
+を求める。(ただし積分定数を $C$とする)
+
+$x = \tan \theta$と置換すると逆関数であることを考えれば定義域は$- \frac{\pi}{2} < \theta < \frac{\pi}{2}$であり、
+\[dx = \frac{d \theta}{\cos^2 \theta}\]
+\[\arctan (\tan \theta) = \theta\]
+となるので部分積分を用いて、 $\theta = \arctan x$を代入すれば
+\begin{eqnarray*}
+  \int \arctan x \, dx & = & \int \theta \frac{1}{\cos^2 \theta} \, d \theta \\
+  & = & \theta \tan \theta - \int \tan \theta \,d \theta \\
+  & = & \theta \tan \theta + \log |\cos \theta| + C \\
+  & = & \arctan x \times x + \log |\cos (\arctan x)| + C \\
+\end{eqnarray*}
+ここで $\cos (\arctan x)$は定義域から正の値をとるので $\cos x = \frac{1}{\sqrt{1 + \tan^2 x}}$を用いれば
+\begin{eqnarray*}
+  \cos (\arctan x) & = & \frac{1}{\sqrt{1 + \tan^2 (\arctan x)}} \\
+  & = & \frac{1}{\sqrt{1 + x^2}}
+\end{eqnarray*}
+となるため$\arctan x$の原始関数は
+\[
+\int \arctan x \, dx = x\arctan x - \frac{1}{2} \log (1 + x^2) + C
+\]
+である。 \\
+
+\textbf{2.}
+(1)
+$y = (\tan x)^{\sin 2x}$を微分する。(ただし $0 < x < \frac{\pi}{2}$)
+$\tan x > 0$から、両辺の $\log$をとると
+\[
+\log y = \sin 2x \log (\tan x)
+\]
+となるため対数微分法により両辺微分すると
+\begin{eqnarray*}
+\frac{y'}{y} & = & 2 \cos 2x \log (\tan x) + \sin 2x \frac{1}{\tan x} \frac{1}{\cos^2 x} \\
+& = & 2 \cos 2x \log (\tan x) + 2 \sin x \cos x \times \frac{1}{\sin x \cos x} \\
+\Leftrightarrow \\
+y' & = & 2 (\tan x)^{\sin 2x} (\cos 2x \log (\tan x) + 1)
+\end{eqnarray*}
+となる。
+\clearpage
+
+(2)
+$r,\theta$を $xy$平面上の極座標としたとき、ヤコビアン $\frac{\partial (x,y)}{\partial (r,\theta)}$を求める。
+
+極座標であることから $x = r \cos \theta , y = r \sin \theta$なので
+\[
+\frac{\partial x}{\partial r} = \cos \theta　\, , \, \frac{\partial y}{\partial \theta} = \sin \theta
+\]
+\[
+\frac{\partial x}{\partial \theta} = - r \sin \theta \, , \, \frac{\partial y}{\partial \theta} = r \cos \theta
+\]
+であるのでヤコビアンは
+\begin{eqnarray*}
+\frac{\partial (x,y)}{\partial (r,\theta)} & = &
+\mathrm{det}
+\left(
+\begin{array}{cc}
+\frac{\partial x}{\partial r} & \frac{\partial y}{\partial \theta} \\
+\frac{\partial x}{\partial \theta} & \frac{\partial y}{\partial \theta} \\
+\end{array}
+\right) \\
+& = & r \cos^2 \theta - (- r \sin^2 \theta)　\\
+& = & r
+\end{eqnarray*}
+となる。
+
+(3)
+曲線 $C$が $x(t) = a \cos t , y(t) = b \sin t$とパラメーター表示されているとき $\frac{dy}{dx}$と $\frac{d^2y}{dx^2}$を求める。ただし $0 < t < \frac{\pi}{2}$であり $a$と$b$は正定数。
+まず $\frac{dy}{dx}$は
+\begin{eqnarray*}
+  \frac{dy}{dx} & = & \frac{dy}{dt} \frac{1}{\frac{dx}{dt}} \\
+  & = & b \cos t \frac{1}{- a \sin t} \\
+  & = & - \frac{b}{a \tan t}
+\end{eqnarray*}
+である。 $\frac{d^2y}{dx^2}$は
+\begin{eqnarray*}
+\frac{d^2y}{dx^2} & = & \frac{d}{dx} \frac{dy}{dx} \\
+& = & \frac{1}{\frac{dx}{dt}} \frac{d}{dt} \frac{dy}{dx} \\
+& = & \frac{1}{- a \sin t} \left( - \frac{b}{a} \frac{-1}{\sin^2 t}  \right) \\
+& = & - \frac{b}{a^2 \sin^3 x}
+\end{eqnarray*}
+である。 \\
+
+\textbf{3.}
+(1)
+定積分 $\int_0^1 \frac{dx}{1 + x^3}$を求める。
+
+$1 + x^3 = (1 + x)(1 - x + x^2)$より
+$a,b,c$を用いて恒等式
+\[
+\frac{1}{(1 + x)(1 - x + x^2)} = \frac{a}{1 + x} + \frac{bx + c}{1 - x + x^2}
+\]
+を考えると
+\[
+a = \frac{1}{3} \, , \, b = - \frac{1}{3} \, , \, c = \frac{2}{3}
+\]
+となるため
+\[\int_0^1 \frac{dx}{1 + x^3} =  \frac{1}{3} \int_0^1 \frac{1}{1 + x} + \frac{- x + 2}{1 - x + x^2} \, dx\]
+ \[=  \frac{1}{3} \int_0^1 \frac{1}{1 + x} - \frac{1}{2} \frac{2x - 1}{1 - x + x^2} + \frac{\frac{3}{2}}{1 - x + x^2} \, dx \]
+ \[=  \frac{1}{3} \left[ \log (1 + x) - \frac{1}{2} \log (1 - x + x^2) \right]_0^1 + \frac{1}{2} \int_0^1 \frac{dx}{(x^2 - x + \frac{1}{4}) + \frac{3}{4}}\]
+ \[ = \frac{1}{3} \log 2 + \frac{1}{2} \int_0^1 \frac{dx}{(x - \frac{1}{2})^2 + \frac{3}{4}}\]
+ここで上の式の第二項の積分を考える。
+$x - \frac{1}{2} = t$と置くと $dx = dt$で、
+\begin{table}[h]
+  \begin{tabular}{c|r}
+    $x$ & $0 \longrightarrow 1$ \\ \hline
+    $t$ & $- \frac{1}{2} \longrightarrow \frac{1}{2}$
+  \end{tabular}
+\end{table}
+
+であるから
+\begin{eqnarray*}
+\int_0^1 \frac{dx}{(x - \frac{1}{2})^2 + \frac{3}{4}} & = & \int_{- \frac{1}{2}}^{\frac{1}{2}} \frac{dt}{t^2 + \frac{3}{4}} \\
+& = & \frac{4}{3} \int_{- \frac{1}{2}}^{\frac{1}{2}} \frac{dt}{\left( \frac{2t}{\sqrt{3}} \right)^2 + 1} \\
+& = & \frac{4}{3} \left[ \frac{\sqrt{3}}{2} \arctan \left( \frac{2t}{\sqrt{3}} \right) \right]_{- \frac{1}{2}}^{\frac{1}{2}} \\
+& = & \frac{2 \sqrt{3}}{3} \left\{ \arctan \left( \frac{1}{\sqrt{3}} \right) - \arctan \left( - \frac{1}{\sqrt{3}} \right) \right\} \\
+& = & \frac{2 \sqrt{3} \pi}{9}
+\end{eqnarray*}
+となるため結果として
+\[
+\int_0^1 \frac{dx}{1 + x^3} = \frac{1}{3} \log 2 + \frac{\sqrt{3} \pi}{9}
+\]
+となる。
+
+(2)
+広義積分 $\int_1^\infty \frac{dx}{x (x + 1)}$を求める。
+\begin{eqnarray*}
+  \int_1^\infty \frac{dx}{x (x + 1)}
+  & = & \int_1^\infty \frac{1}{x} - \frac{1}{x + 1} \, dx \\
+  & = & \lim_{\beta \to \infty} \left[ \log x - \log (1 + x) \right]_1^\beta \\
+  & = & \lim_{\beta \to \infty} \left\{ \log \left( \frac{\beta}{1 + \beta} \right) + \log 2 \right\} \\
+  & = & \lim_{\beta \to \infty} \left\{ \log \left( \frac{1}{\frac{1}{\beta} + 1} \right) + \log 2 \right\} \\
+  & = & \log 2 \\
+\end{eqnarray*}
+
+(3)
+広義積分 $\int_1^\infty \frac{dx}{x^2 (x^2 + 1)}$を求める。
+\begin{eqnarray*}
+  \int_1^\infty \frac{dx}{x^2 (x^2 + 1)}
+  & = & \int_1^\infty \frac{1}{x^2} - \frac{1}{x^2 + 1} \, dx \\
+  & = & \lim_{\beta \to \infty} \left[ - x^{-1} - \arctan x \right]_1^\beta \\
+  & = & \lim_{\beta \to \infty} \left\{ - \frac{1}{\beta} + 1 - \arctan \beta + \frac{\pi}{4} \right\}
+\end{eqnarray*}
+$\lim_{\beta \to \infty} \arctan \beta = 1$から
+\[
+\int_1^\infty \frac{dx}{x^2 (x^2 + 1)} = \frac{\pi}{4}
+\]
+\\
+
+(4)
+広義積分 $\int_1^\infty \frac{dx}{\sqrt{1 + x^4}}$が収束するか発散するかを求める。
+
+$x > 1$において $1 + x^4 > x^4 > 1$よりルートをとると $\sqrt{1 + x^4} > x^2 > 1$が成り立つので
+\begin{eqnarray*}
+  \left| \frac{1}{\sqrt{1 + x^4}} \right| < \frac{1}{x^2}
+\end{eqnarray*}
+であり
+\begin{eqnarray*}
+  \int_1^\infty \frac{1}{x^2} \, dx
+  & = & \lim_{\beta \to \infty} [ - x^{-1} ]_1^\beta \\
+  & = & 1
+\end{eqnarray*}
+となり優関数の広義積分が収束するため $\int_1^\infty \frac{dx}{\sqrt{1 + x^4}}$も収束する。\\
+
+\textbf{4.}
+(1) $z = \arctan \frac{y}{x}$としたとき $z_{xx} + z_{yy}$を求める。
+\begin{eqnarray*}
+  z_x & = & \frac{1}{1 + \left( \frac{y}{x} \right)^2} \left( - \frac{y}{x^2} \right) \\
+  & = & \frac{- y}{x^2 + y^2}
+\end{eqnarray*}
+なので
+\[ z_{xx} = - y \frac{2x}{\left( x^2 + y^2 \right)^2} \]
+また
+\begin{eqnarray*}
+  z_y & = & \frac{1}{1 + \left( \frac{y}{x} \right)^2} \left( \frac{1}{x} \right) \\
+  & = & \frac{x}{x^2 + y^2} \\
+\end{eqnarray*}
+なので
+\[z_{yy} = x \frac{2y}{x^2 + y^2}\]
+よって
+\[z_{xx} + z_{yy} = 0 \]
+である。 \\
+
+(2),(3)
+左辺を計算するだけ。
+
+飽きた。
+\end{document}
